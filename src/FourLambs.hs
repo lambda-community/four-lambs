@@ -17,6 +17,9 @@ any' f (x:xs)
   | f x = True
   | otherwise = any' f xs
 
+any'' :: (a -> Bool) -> [a] -> Bool
+any'' f xs = reduce' (\x y -> f x || y) False xs
+
 sum' :: Num a => [a] -> a
 sum' [] = 0
 sum' (x:xs) = x + (sum' xs)
@@ -28,3 +31,10 @@ mult' (x:xs) = x * (mult' xs)
 reduce' :: (a -> b -> b) -> b -> [a] -> b
 reduce' f z [] = z
 reduce' f z (x:xs) = f x (reduce' f z xs )
+
+concat' :: [[a]] -> [a]
+concat' xs = reduce' (++) []  xs
+
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f (x:xs) = f x : map' f xs

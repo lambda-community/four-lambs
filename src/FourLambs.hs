@@ -4,6 +4,8 @@ reverse' :: [a] -> [a]
 reverse' []     = []
 reverse' (x:xs) = (reverse xs) ++ [x]
 
+-- | An improvement to the standard `take`.
+-- If n is negative, it will _take_ the last n elements of the list.
 take' :: Int -> [a] -> [a]
 take' _ []    = []
 take' n (x:xs)
@@ -11,12 +13,14 @@ take' n (x:xs)
   | n >  0    = x:(take' (n-1) xs)
   | otherwise = reverse' (take' (negate n) (reverse' (x:xs)))
 
+-- | With hand written recursion
 any' :: (a -> Bool) -> [a] -> Bool
 any' f []     = False
 any' f (x:xs)
   | f x       = True
   | otherwise = any' f xs
 
+-- | Implicit recursion via reduce
 any'' :: (a -> Bool) -> [a] -> Bool
 any'' f xs = reduce' (\x y -> f x || y) False xs
 

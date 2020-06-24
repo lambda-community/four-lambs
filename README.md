@@ -28,7 +28,7 @@
  - [Real World Haskell](http://book.realworldhaskell.org/read/)
  - [Learn X in Y minutes](https://learnxinyminutes.com/docs/haskell/)
  - [Haskell prelude](https://hackage.haskell.org/package/base-4.8.2.0/docs/Prelude.html)
- - [Slides](https://hackage.haskell.org/package/base-4.8.2.0/docs/Prelude.html)
+ - [Slides](https://docs.google.com/presentation/d/1T6Q-HEUSCqi62yos4x8GjUaIW46tBqTPtukhvmZBUVM/edit?usp=sharing)
 
 ## Before you start
  - At least [install](https://docs.haskellstack.org/en/stable/README/#how-to-install) 

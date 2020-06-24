@@ -24,6 +24,13 @@ any' f (x:xs)
 any'' :: (a -> Bool) -> [a] -> Bool
 any'' f xs = reduce' (\x y -> f x || y) False xs
 
+concat' :: [[a]] -> [a]
+concat' []     = []
+concat' (x:xs) = x ++ concat xs
+
+concat'' :: [[a]] -> [a]
+concat'' xs = reduce' (++) []  xs
+
 sum' :: Num a => [a] -> a
 sum' []     = 0
 sum' (x:xs) = x + (sum' xs)
@@ -41,9 +48,6 @@ mult'' xs = reduce' undefined undefined xs
 reduce' :: (a -> b -> b) -> b -> [a] -> b
 reduce' f z []     = z
 reduce' f z (x:xs) = f x (reduce' f z xs)
-
-concat' :: [[a]] -> [a]
-concat' xs = reduce' (++) []  xs
 
 map' :: (a -> b) -> [a] -> [b]
 map' _ []     = []

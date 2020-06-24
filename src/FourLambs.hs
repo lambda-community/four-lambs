@@ -52,3 +52,9 @@ reduce' f z (x:xs) = f x (reduce' f z xs)
 map' :: (a -> b) -> [a] -> [b]
 map' _ []     = []
 map' f (x:xs) = f x : map' f xs
+
+quickSort :: Ord a => [a] -> [a]
+quickSort []     = undefined
+quickSort (x:xs) = undefined (filter undefined xs)
+                   ++ [x] ++
+                   undefined (filter undefined xs)

@@ -36,14 +36,14 @@ sum' []     = 0
 sum' (x:xs) = x + (sum' xs)
 
 sum'' :: Num a => [a] -> a
-sum'' xs = reduce' undefined undefined xs
+sum'' = reduce' (+) 0 -- point free 
 
 mult' :: Num a => [a] -> a
 mult' []     = 1
 mult' (x:xs) = x * (mult' xs)
 
 mult'' :: Num a => [a] -> a
-mult'' xs = reduce' undefined undefined xs
+mult'' = reduce' (*) 1 -- point free
 
 reduce' :: (a -> b -> b) -> b -> [a] -> b
 reduce' f z []     = z
@@ -54,7 +54,10 @@ map' _ []     = []
 map' f (x:xs) = f x : map' f xs
 
 quickSort :: Ord a => [a] -> [a]
-quickSort []     = undefined
-quickSort (x:xs) = undefined (filter undefined xs)
-                   ++ [x] ++
-                   undefined (filter undefined xs)
+quickSort = quickSortOn id
+                   
+quickSortOn :: Ord a => (b -> a) -> [b] -> [b]
+quickSortOn f []     = []
+quickSortOn f (x:xs) = quickSortOn f (filter ( \a -> (f a) <= (f x) ) xs)
+                       ++ [x] ++
+                       quickSortOn f (filter ( \a -> (f a) > (f x) ) xs)

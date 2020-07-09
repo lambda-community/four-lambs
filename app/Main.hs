@@ -1,6 +1,7 @@
 module Main where
 
 import FourLambs
+import qualified IO.Text as IO.Text
 
 main :: IO ()
-main = putStrLn "Hello, lambs!"
+main = IO.Text.main

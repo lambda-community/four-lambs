@@ -13,6 +13,17 @@ take' n (x:xs)
   | n >  0    = x:(take' (n-1) xs)
   | otherwise = reverse' (take' (negate n) (reverse' (x:xs)))
 
+{-
+-- Execution works as a rewriting system until the expressions reduces into a value
+-- https://en.wikipedia.org/wiki/Abstract_rewriting_system
+-- https://en.wikipedia.org/wiki/Rewriting
+take' 5 1:2:3:4:[] = 1:(take' 4 2:3:4:[])
+                   = 1:2:(take' 3 3:4:[])
+                   = 1:2:3:(take' 2 4:[])
+                   = 1:2:3:4:(take' 1 [])
+                   = 1:2:3:4:[]
+-}
+
 -- with hand written recursion
 any' :: (a -> Bool) -> [a] -> Bool
 any' f []     = False

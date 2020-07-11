@@ -2,7 +2,7 @@ module FourLambs where
 
 reverse' :: [a] -> [a]
 reverse' []     = []
-reverse' (x:xs) = (reverse xs) ++ [x]
+reverse' (x:xs) = reverse xs ++ [x]
 
 -- | An improvement to the standard `take`.
 -- If n is negative, it will _take_ the last n elements of the list.
@@ -10,7 +10,7 @@ take' :: Int -> [a] -> [a]
 take' _ []    = []
 take' n (x:xs)
   | n == 0    = []
-  | n >  0    = x:(take' (n-1) xs)
+  | n >  0    = x : take' (n-1) xs
   | otherwise = reverse' (take' (negate n) (reverse' (x:xs)))
 
 {-
@@ -33,7 +33,7 @@ any' f (x:xs)
 
 -- implicit recursion via reduce
 any'' :: (a -> Bool) -> [a] -> Bool
-any'' f xs = reduce' (\x y -> f x || y) False xs
+any'' f = reduce' (\x y -> f x || y) False
 
 concat' :: [[a]] -> [a]
 concat' []     = []
@@ -44,14 +44,14 @@ concat'' xs = reduce' (++) []  xs
 
 sum' :: Num a => [a] -> a
 sum' []     = 0
-sum' (x:xs) = x + (sum' xs)
+sum' (x:xs) = x + sum' xs
 
 sum'' :: Num a => [a] -> a
 sum'' = reduce' (+) 0 -- point free 
 
 mult' :: Num a => [a] -> a
 mult' []     = 1
-mult' (x:xs) = x * (mult' xs)
+mult' (x:xs) = x * mult' xs
 
 mult'' :: Num a => [a] -> a
 mult'' = reduce' (*) 1 -- point free
@@ -69,6 +69,6 @@ quickSort = quickSortOn id
                    
 quickSortOn :: Ord a => (b -> a) -> [b] -> [b]
 quickSortOn f []     = []
-quickSortOn f (x:xs) = quickSortOn f (filter ( \a -> (f a) <= (f x) ) xs)
+quickSortOn f (x:xs) = quickSortOn f (filter (\a -> f a <= f x) xs)
                        ++ [x] ++
-                       quickSortOn f (filter ( \a -> (f a) > (f x) ) xs)
+                       quickSortOn f (filter (\a -> f a > f x) xs)

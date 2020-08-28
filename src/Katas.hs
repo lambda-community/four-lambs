@@ -17,7 +17,7 @@ subtraction = undefined
 
 -- | Insert an element at a given position into a list.
 insertAt :: a -> [a] -> Int -> [a]
-insertAt = undefined
+insertAt x xs n = (take n xs) ++ [x] ++ (drop n xs) 
 
 -- | Eliminate consecutive duplicates of list elements.
 compress :: Eq a => [a] -> [a]

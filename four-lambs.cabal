@@ -1,10 +1,8 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.2.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: fd3f78476b4d76c96f41076ec4641d0068886a0ba0851de303cbf3778eec65d5
 
 name:           four-lambs
 version:        0.1.0.0
@@ -30,7 +28,6 @@ library
       ChurchEncodings
       FourLambs
       IO.Text
-      Katas
   other-modules:
       Paths_four_lambs
   hs-source-dirs:

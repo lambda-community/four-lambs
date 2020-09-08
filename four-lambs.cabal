@@ -27,6 +27,7 @@ library
   exposed-modules:
       ChurchEncodings
       FourLambs
+      IO.NewLineAppend
       IO.Text
   other-modules:
       Paths_four_lambs

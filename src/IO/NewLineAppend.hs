@@ -3,7 +3,8 @@ module IO.NewLineAppend where
 
 import qualified Control.Foldl as Fold
 import qualified Turtle as Sh
-import qualified Turtle.Pattern as Sh
+import qualified Turtle.Pattern as Pattern
+import Turtle.Pattern (Pattern)
 import Turtle (FilePath)
 
 import Turtle ((</>))
@@ -20,25 +21,21 @@ fixNewLine = undefined
 findFiles :: FilePath -> Sh.Pattern Text -> IO [FilePath]
 findFiles directory extension = Sh.fold (Sh.find (Sh.ends extension) directory) Fold.list
 
+cliArgs :: IO (FilePath, Pattern Text)
+cliArgs = do
+  input <- Sh.arguments
+  let directory = Sh.fromText . head $ input
+      extension = Pattern.text  . head . tail $ input
+      in return (directory, extension)
+
+
 main :: IO ()
 main = do
   -- read directory and extension from cli args
-
-  input <- Sh.arguments
-  let directory = head input
-  let extension = head $ tail input
-
-
-  print [directory, extension]
---file <- fmap fromText (input "files1.txt" <|> input "files2.txt")
-
-  files <- findFiles  (Sh.fromText directory) (Sh.text extension)
+  (directory, extension) <- cliArgs
+  files <- findFiles directory extension
   print files
   -- call findFiles directory extension
   -- fix the files
   putStrLn "Fixed this many files"
   putStrLn "<List of files>"
-  
-  
-  
-  

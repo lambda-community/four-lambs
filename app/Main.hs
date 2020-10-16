@@ -7,3 +7,4 @@ import qualified IO.NewLineAppend as IO.NewLineAppend
 main :: IO ()
 main = IO.NewLineAppend.main
 --main = IO.Text.main
+
